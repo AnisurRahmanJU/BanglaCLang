@@ -145,7 +145,7 @@
         window.getSelection().addRange(range);
         document.execCommand('copy');
         window.getSelection().removeAllRanges();
-        alert('Copy and Paste code in Compiler');
+        alert('Copy Code Successful');
 
         // Paste the copied code into the compiler textarea
         codeTextarea.value = convertedCode.innerText;
