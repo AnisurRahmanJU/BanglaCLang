@@ -110,7 +110,15 @@
 				'ভাগশেষ':'fmod',
 				'ভুজ': 'sin',
 				'কোটি':'cos',
-				'স্পর্শক': 'tan',	
+				'স্পর্শক': 'tan',
+				
+				'নথিপত্র': 'FILE',
+				'নথি': 'f',
+				'পড়া_মুড': 'r',
+
+
+	
+				
 			};
 
 			// Replace Bangla words with English keywords
