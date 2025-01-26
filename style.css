@@ -17,7 +17,7 @@
 		}
 
 		.c-convert {
-			font-size: 16px;
+			font-size: 30px;
 			cursor: pointer;
 			border: none;
 			background-color: #006AB5;
@@ -44,6 +44,8 @@
 
 		.banglaCode {
 			padding: 5px;
+			font-size:30px;
+			
 		}
 
 		.copy-button {
