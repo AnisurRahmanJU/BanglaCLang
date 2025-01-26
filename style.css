@@ -1,6 +1,7 @@
-:root {dark}
+
 
 		body {
+			root:dark;
 			font-family: Open Sans;
 			margin: 0 auto;
 			display: flex;
