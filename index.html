@@ -14,10 +14,37 @@
 	<script src="script.js"></script>
 	<title>বাংলা সি ভাষা</title>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  padding: 25px;
+  background-color: white;
+  color: black;
+  font-size: 25px;
+}
+
+.dark-mode {
+  background-color: #333;
+  color: white;
+}
+</style>
+
 </head>
 
 <body>
-	<center><h1 style="color: #006AB5;">বাংলা সি ভাষা</h1></center>
+	<center><h1 style="color: #006AB5;">বাংলা সি ভাষা</h1>
+	<button onclick="myFunction()">Dark Mode</button>
+
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+	
+	</center> 
+	
+	
 
 	<label class="banglaCode">Enter Bangla Code:</label>
 	<textarea id="banglaCode" placeholder="Enter your Bangla code here..." class="code-area"></textarea>
