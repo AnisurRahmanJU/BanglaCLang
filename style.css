@@ -1,7 +1,7 @@
 
 
 		body {
-			root:dark;
+			background-color: #333;
 			font-family: Open Sans;
 			margin: 0 auto;
 			display: flex;
