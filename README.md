@@ -1,7 +1,7 @@
 # বাংলা সি ভাষা
 > My Project of MSCSE at United International University in Spring 2022.
 > https://anisurrahmanju.github.io/BanglaCLang/
-### ```সিনটেক্স```
+### ```সিনটেক্স``` 
 ```py
 # অন্তর্ভুক্ত < স্ট্যান্ডার্ড_ইন_আউট.হেডার >
 পূর্ণ মৌলিক()
