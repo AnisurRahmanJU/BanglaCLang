@@ -1,5 +1,5 @@
 # বাংলা সি ভাষা
-<img src ="banglaclang.PNG">
+<img src ="banglaclang.PNG"> 
 
 > My Project of MSCSE at United International University in Spring 2022.
 > https://anisurrahmanju.github.io/BanglaCLang/ 
