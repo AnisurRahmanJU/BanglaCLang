@@ -1,127 +1,114 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
- <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <title>বাংলা➝সি কোড</title>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- PrismJS (C Language Support with Line Numbers) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
 
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
-	<script src="script.js"></script>
-	<title>বাংলা➝সি কোড</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-<style>
-
-	body, h1, h2, h3, h4, h5, h6, label, button, textarea, pre, code, a {
-    font-family: 'JetBrains Mono', monospace !important;
-}
-
-textarea.code-area {
-	background-color: #272822;
-	color: #f8f8f2;
-	font-family: 'Courier New', Courier, monospace;
-	border: 1px solid #444;
-	padding: 10px;
-	width: 80%;
-	min-height: 200px;
-	font-size: 16px;
-	resize: vertical;
-}
-
-/* Converted C Code Area */
-.converted-code-wrapper {
-	background-color: #272822;
-	color: #f8f8f2;
-	font-family: 'Courier New', Courier, monospace;
-	width: 80%;
-	height: 300px;
-	overflow: auto;
-	border: 1px solid #444;
-	padding: 10px;
-	box-sizing: border-box;
-}
-.converted-code-wrapper pre {
-	margin: 0;
-	font-size: 16px;
-}
-
-#convertedCode {
-	white-space: pre-wrap;  /* VERY IMPORTANT */
-	word-wrap: break-word;
-}
-
-</style>
-
-
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
-<body style="background-color: #333333; color: white;">
-	<center><h1 style="color:light blue;">বাংলা➝সি কোড</h1>
-	
+<body style="background-color: #333; color: white">
+  <center>
+    <h1 style="color: lightblue;">বাংলা➝সি কোড</h1>
+  </center>
 
-<script>
-function toggleDarkMode() {
-   document.body.classList.toggle("dark-mode");
-}
-</script>
+  <br />
 
-	</center> 
-	<br>
-	
-	
+  <!-- Bangla Code Input -->
+  <label class="banglaCode">Enter Bangla Code:</label>
+  <div class="textarea-wrapper">
+    <div class="line-numbers-wrapper" id="lineNumbers">১</div>
+    <div class="textarea-scroll-wrapper">
+      <textarea
+        id="banglaCode"
+        placeholder="Enter your Bangla code here..."
+        class="code-area"
+        oninput="updateLineNumbers()"
+        onscroll="syncScroll()"
+      ></textarea>
+    </div>
+  </div>
 
-	<label class="banglaCode">Enter Bangla Code:</label>
-	<textarea id="banglaCode" placeholder="Enter your Bangla code here..." class="code-area"></textarea>
-	<button onclick="convertToC()" class="c-convert">Convert to C Code</button><br>
-	<div class="code-container">
-	<h2>Converted C Code:</h2>
-	<button onclick="copyToClipboard()" class="copy-button">📋<span style="color: black;">Copy Code</span></button>
-</div><br>
+  <button onclick="convertToC()" class="c-convert">Convert to C Code</button>
 
-<div class="converted-code-wrapper">
-	<pre><code id="convertedCode" class="language-c"></code></pre>
-</div>
+  <!-- Converted Code Display -->
+  <div class="code-container">
+    <h2>Converted C Code:</h2>
+    <button onclick="copyToClipboard()" class="copy-button">
+      📋<span style="color: black">Copy Code</span>
+    </button>
+  </div>
 
+  <div class="converted-code-wrapper">
+    <pre class="line-numbers"><code id="convertedCode" class="language-c"></code></pre>
+  </div>
 
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+  <!-- Online Compiler Links -->
+  <div class="run-buttons">
+    <span style="font-weight: bold; font-size: 20px;">▶️ Run by:</span>
+    <a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" class="c-convert">Programiz</a>
+    <a href="https://www.w3schools.com/c/tryc.php?filename=demo_compiler" target="_blank" class="c-convert">W3Schools</a>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <a href="https://github.com/AnisurRahmanJU/BanglaCLang/blob/main/bn_code-examples.md" target="_blank" class="c-convert">📖 Documentation</a>
+  <a href="https://github.com/AnisurRahmanJU/" target="_blank" class="c-convert">👤 About Me</a>
 
-<br>
-<br>
-<br>
-<!-- Run Buttons Section (Updated) -->
-<div class="run-buttons" style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
-	<span style="font-weight: bold; font-size: 20px;">▶️ Run by:</span>
-	<a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" class="c-convert">Programiz</a>
-	<a href="https://www.w3schools.com/c/tryc.php?filename=demo_compiler" target="_blank" class="c-convert">W3School</a>
-</div>
+  <!-- Scripts -->
+  <script>
+    function updateLineNumbers() {
+      const textarea = document.getElementById("banglaCode");
+      const lineNumbers = document.getElementById("lineNumbers");
+      const lines = textarea.value.split("\n").length;
 
-<a href="https://github.com/AnisurRahmanJU/BanglaCLang/blob/main/bn_code-examples.md" target=_blank class="c-convert">📖
-	Documentation</a>
-<a href="https://github.com/AnisurRahmanJU/" target=_blank class="c-convert">👤 About Me</a>
+      // Convert English digits to Bengali digits
+      function toBengaliDigit(num) {
+        const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        return String(num).split('').map(d => bengaliDigits[parseInt(d)]).join('');
+      }
 
-<br>
-<br>
-<br>
+      lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => toBengaliDigit(i + 1)).join("<br>");
+      syncScroll();
+    }
 
+    function syncScroll() {
+      const textarea = document.getElementById("banglaCode");
+      const lineNumbers = document.getElementById("lineNumbers");
+      lineNumbers.scrollTop = textarea.scrollTop;
+    }
 
-	
+    function convertToC() {
+      const input = document.getElementById("banglaCode").value;
+      const output = document.getElementById("convertedCode");
+      output.textContent = "// Converted C Code\n" + input; // Dummy conversion
+      Prism.highlightAll();
+    }
 
+    function copyToClipboard() {
+      const code = document.getElementById("convertedCode").textContent;
+      navigator.clipboard.writeText(code).then(() => alert("Code copied to clipboard!"));
+    }
+
+    document.addEventListener("DOMContentLoaded", updateLineNumbers);
+  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
