@@ -1,157 +1,138 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+h1 {
+  color: #399dd3;
+}
 
-		body {
-			
-			font-family: Open Sans;
-			margin: 0 auto;
-			display: flex;
-			flex-direction: column;
-			justify-centent: center;
-			align-items: center;
-         }
+.banglaCode {
+  padding: 5px;
+  font-size: 20px;
+}
 
-		textarea {
-			width: 80%;
-			height: 250px;
-			margin: 5px 0;
-			font-size: 20px;
-		}
+.textarea-wrapper {
+  display: flex;
+  width: 80%;
+  max-width: 1000px;
+  border: 1px solid #444;
+  background-color: #272822;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 300px; /* fixed height */
+}
 
-		.c-convert {
-			font-size: 20px;
-			cursor: pointer;
-			border: none;
-			background-color: #006AB5;
-			color: white;
-			padding: 5px 5px;
-			border-radius: 5px;
-			margin: 5px;
-			outline: none;
-			text-decoration: none;
-			cursor: pointer;
-		}
+.line-numbers-wrapper {
+  background-color: #272822;
+  color: #999;
+  text-align: right;
+  padding: 10px 5px 10px 10px;
+  user-select: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 1px solid #444;
+}
 
-		.c-convert:hover {
-			opacity: 50%;
-		}
+.textarea-scroll-wrapper {
+  width: 100%;
+  overflow: auto;
+}
 
-		copy-button:hover {
-			opacity: 50%;
-		}
+textarea.code-area {
+  background-color: transparent;
+  color: #f8f8f2;
+  border: none;
+  padding: 10px;
+  resize: none;       /* disable manual resize */
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  width: 100%;
+  height: 300px;      /* fixed height */
+  white-space: pre;   /* prevent wrapping */
+  overflow: auto;     /* scroll inside textarea */
+  box-sizing: border-box;
+}
 
-		code {
-			white-space: pre-wrap;
-		}
+/* Converted Code */
+.converted-code-wrapper {
+  background-color: #272822;
+  color: #f8f8f2;
+  font-family: 'JetBrains Mono', monospace;
+  width: 80%;
+  max-width: 1000px;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid #444;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
 
-		.banglaCode {
-			padding: 5px;
-			font-size: 20px;
-			
-		}
+.converted-code-wrapper pre {
+  margin: 0;
+  font-size: 16px;
+}
 
-		.copy-button {
-			background: white;
-			border: none;
-			font-size: 22px;
-			cursor: pointer;
-		}
+/* Buttons */
+.c-convert {
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #006AB5;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px 5px;
+  text-decoration: none;
+}
 
-		.code-container {
-			display: flex;
-			justify-content: space-between;
-			width: 80%;
-		}
+.c-convert:hover {
+  opacity: 0.7;
+}
 
-		.code-area {
-			background: #151515;
-			border: none;
-			color: white;
-			padding: 5px;
-			border-radius: 5px;
-			width: 80%;
-			font-size: 20px;
-		}
+.copy-button {
+  background: white;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
 
-		.copy-text {
-			font-size: 5px;
-			color: black;
-		}
+.copy-button:hover {
+  opacity: 0.7;
+}
 
-		.code-render {
-			height: 250px;
-			overflow-x: auto;
-			overflow-y: auto;
-			scroll: auto
-		}
-		h1 {
-      color: #399dd3;
-    }
+.code-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1000px;
+  align-items: center;
+}
 
-    label {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-      color: #555;
-    }
+/* Run buttons */
+.run-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
 
-    textarea {
-      width: 80%;
-      height: 300px;
-      padding: 8px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 16px;
-      background-color: black;
-      font-size: 20px;
-      color: white;
-      ::placeholder {
-        /* Set placeholder color to white */
-        color: white;
-      }
-    }
-
-    button {
-      background-color: #87CEEB;
-      color: #fff;
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-    }
-
-    button:hover {
-      background-color: #5F9EA0;
-    }
-
-    #output-container {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 80%;
-	  height: 300px;
-    }
-
-    #output-heading {
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-      color: #399dd3;
-	  height: 300px;
-    }
-
-    #output {
-      padding: 10px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      width: 100%;
-      white-space: pre-wrap;
-      height: 300px;
-      font-size: 20px;
-	
-    }
-
-
-
-
+a.c-convert {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin-top: 10px;
+  display: inline-block;
+}
