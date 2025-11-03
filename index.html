@@ -30,13 +30,13 @@
   <br />
 
   <!-- Bangla Code Input -->
-  <label class="banglaCode">Enter Bangla Code:</label>
+  <label class="banglaCode">বাংলা কোড:</label>
   <div class="textarea-wrapper">
     <div class="line-numbers-wrapper" id="lineNumbers">১</div>
     <div class="textarea-scroll-wrapper">
       <textarea
         id="banglaCode"
-        placeholder="Enter your Bangla code here..."
+        placeholder="এখানে বাংলা কোড লিখুন..."
         class="code-area"
         oninput="updateLineNumbers()"
         onscroll="syncScroll()"
@@ -44,13 +44,13 @@
     </div>
   </div>
 
-  <button onclick="convertToC()" class="c-convert">Convert to C Code</button>
+  <button onclick="convertToC()" class="c-convert">সি কোডে কনভার্ট করুন</button>
 
   <!-- Converted Code Display -->
   <div class="code-container">
     <h2>Converted C Code:</h2>
     <button onclick="copyToClipboard()" class="copy-button">
-      📋<span style="color: black">Copy Code</span>
+      📋<span style="color: black">কপি</span>
     </button>
   </div>
 
@@ -63,13 +63,13 @@
 
   <!-- Online Compiler Links -->
   <div class="run-buttons">
-    <span style="font-weight: bold; font-size: 20px;">▶️ Run by:</span>
-    <a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" class="c-convert">Programiz</a>
+    <span style="font-weight: bold; font-size: 20px;">▶️ রান বাই:</span>
+    <a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" class="c-convert">Programiz১</a>
     <a href="https://www.w3schools.com/c/tryc.php?filename=demo_compiler" target="_blank" class="c-convert">W3Schools</a>
   </div>
 
-  <a href="https://github.com/AnisurRahmanJU/BanglaCLang/blob/main/bn_code-examples.md" target="_blank" class="c-convert">📖 Documentation</a>
-  <a href="https://github.com/AnisurRahmanJU/" target="_blank" class="c-convert">👤 About Me</a>
+  <a href="https://github.com/AnisurRahmanJU/BanglaCLang/blob/main/bn_code-examples.md" target="_blank" class="c-convert">📖 ডকুমেন্টেশন</a>
+  <a href="https://github.com/AnisurRahmanJU/" target="_blank" class="c-convert">👤 পরিচিতি</a>
 
   <!-- Scripts -->
   <script>
