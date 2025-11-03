@@ -95,6 +95,7 @@ textarea.code-area {
   border-radius: 5px;
   margin: 10px 5px;
   text-decoration: none;
+  font-family: 'Hind Siliguri';
 }
 
 .c-convert:hover {
@@ -106,6 +107,7 @@ textarea.code-area {
   border: none;
   font-size: 22px;
   cursor: pointer;
+  font-family: 'Hind Siliguri';
 }
 
 .copy-button:hover {
@@ -136,5 +138,6 @@ a.c-convert {
   margin-top: 10px;
   display: inline-block;
 }
+
 
 
