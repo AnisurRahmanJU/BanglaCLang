@@ -21,7 +21,7 @@ h1 {
   max-width: 1000px;
   border: 1px solid #444;
   background-color: #272822;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Hind Siliguri';
   font-size: 16px;
   line-height: 1.5;
   box-sizing: border-box;
@@ -35,7 +35,7 @@ h1 {
   text-align: right;
   padding: 10px 5px 10px 10px;
   user-select: none;
-  font-family: 'JetBrains Mono', monospace;
+  font-family:  'Hind Siliguri';
   font-size: 16px;
   line-height: 1.5;
   white-space: nowrap;
@@ -54,7 +54,7 @@ textarea.code-area {
   border: none;
   padding: 10px;
   resize: none;       /* disable manual resize */
-  font-family: 'JetBrains Mono', monospace;
+  font-family:  'Hind Siliguri';
   font-size: 16px;
   line-height: 1.5;
   width: 100%;
@@ -136,4 +136,5 @@ a.c-convert {
   margin-top: 10px;
   display: inline-block;
 }
+
 
