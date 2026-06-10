@@ -72,7 +72,7 @@ body {
 }
 
 /* ==========================================================================
-   ৩. মেইন ওয়ার্কস্পেস লেআউট গ্রিড (Main Workspace Grid Layout)
+   ৩. মেইন ওয়ার্কস্পেস লেআউট গ্রিড (Main Workspace Grid Layout)
    ========================================================================== */
 .ide-container {
     flex: 1;
@@ -105,6 +105,8 @@ body {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    /* [FIXED HEIGHT]: ডেস্কটপ মোডে প্যানেলের মোট ফিক্সড হাইট সেট করা হলো */
+    height: 500px !important; 
 }
 
 .panel-header {
@@ -127,20 +129,23 @@ body {
 }
 
 /* ==========================================================================
-   ৫. কোড উইন্ডো এবং লাইন নাম্বার (Editor Windows & Line Numbers)
+   ৫. কোড উইন্ডো এবং lijn নাম্বার (Editor Windows & Line Numbers)
    ========================================================================== */
 .editor-body {
     display: flex;
     flex: 1;
-    height: 100%;
     position: relative;
     background-color: #16161a;
+    /* [FIXED HEIGHT]: ৫00px প্যানেল থেকে ৪৮px হেডার বাদ দিয়ে মেইন কোড এরিয়া ফিক্সড করা হলো */
+    height: 452px !important;
+    max-height: 452px !important;
+    overflow: hidden;
 }
 
 /* কাস্টম বাম ও ডান পাশের লাইন নাম্বার গাটার (Gutter) */
 .line-numbers-wrapper {
     background-color: #16161a;
-    color: #4a4a5a; /* একটু হালকা টেক্সট কালার যেন কোডের চেয়ে ড্রপড দেখায় */
+    color: #4a4a5a; /* একটু হালকা টেক্সট কালার যেন কোডের চেয়ে ড্রপড দেখায় */
     text-align: right;
     padding: 16px 12px 16px 16px;
     user-select: none;
@@ -277,7 +282,7 @@ textarea.code-area {
 }
 
 /* ==========================================================================
-   ৮. ফুটার টুলস প্যানেল (Footer Online Runner Tools)
+   ⑧. ফুটার টুলস প্যানেল (Footer Online Runner Tools)
    ========================================================================== */
 .footer-tools {
     background-color: #16161a;
@@ -329,7 +334,7 @@ textarea.code-area {
    ========================================================================== */
 @media (max-width: 900px) {
     .workspace {
-        grid-template-columns: 1fr; /* মোড পরিবর্তন হয়ে কলামগুলো নিচে নিচে বসবে */
+        grid-template-columns: 1fr; /* মোড পরিবর্তন হয়ে কলামগুলো নিচে নিচে বসবে */
         min-height: auto;
         gap: 16px;
     }
@@ -339,7 +344,7 @@ textarea.code-area {
         height: 398px !important;
     }
 
-    /* উভয় কোড এরিয়ার হাইট ৩৫০ পিক্সেল ফিক্সড করা হলো */
+    /* উভয় কোড এরিয়ার হাইট ৩৫০ পিক্সেল ফিক্সড করা হলো */
     .editor-body {
         height: 350px !important;
         max-height: 350px !important;
