@@ -1,114 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>বাংলা➝সি কোড</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
-  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'/>
-
-  <!-- PrismJS (C Language Support with Line Numbers) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা ➝ সি কোড কনভার্টার</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* ধূসর ব্যাকগ্রাউন্ড রিমুভ করার এবং প্যাডিং সিঙ্ক করার গ্লোবাল প্রিজম ওভাররাইড */
+        .converted-code-wrapper pre,
+        .converted-code-wrapper code,
+        pre[class*="language-"],
+        code[class*="language-"] {
+            background: transparent !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+            border: none !important;
+            padding: 0 !important; /* টেক্সট এরিয়ার সাথে অ্যালাইনমেন্ট ঠিক রাখার জন্য */
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+        }
+        
+        /* আউটপুট এরিয়ার ভেতরের কন্টেইনার প্যাডিং */
+        .converted-code-wrapper {
+            padding: 16px 16px 16px 4px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
+<body>
 
-<body style="background-color: #333; color: white">
-  <center>
-    <h1 style="color: lightblue;">বাংলা➝সি কোড</h1>
-  </center>
+    <header class="app-header">
+        <div class="logo-area">
+            <span class="logo-icon">⚡</span>
+            <h1>বাংলা ➝ সি কোড</h1>
+        </div>
+        <div class="header-links">
+            <a href="https://github.com/AnisurRahmanJU/BanglaCLang/blob/main/bn_code-examples.md" target="_blank" class="nav-link">📖 ডকুমেন্টেশন</a>
+            <span class="divider">|</span>
+            <a href="https://github.com/AnisurRahmanJU/" target="_blank" class="nav-link">👤 প্রোফাইল</a>
+        </div>
+    </header>
 
-  <br />
+    <main class="ide-container">
+        <div class="workspace">
+            
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="tab-indicator active">বাংলা কোড এডিটর</div>
+                </div>
+                <div class="editor-body">
+                    <div class="line-numbers-wrapper" id="banglaLineNumbers"></div>
+                    <div class="textarea-scroll-wrapper" id="banglaScrollWrapper">
+                        <textarea 
+                            id="banglaCode" 
+                            placeholder="এখানে বাংলা কোড লিখুন..." 
+                            class="code-area"
+                            oninput="handleInput()" 
+                            onscroll="syncInputScroll()"
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Bangla Code Input -->
-  <h2>বাংলা প্রোগ্রামিং কোড:</h2>
-  <div class="textarea-wrapper">
-    <div class="line-numbers-wrapper" id="lineNumbers">১</div>
-    <div class="textarea-scroll-wrapper">
-      <textarea
-        id="banglaCode"
-        placeholder="এখানে বাংলা কোড লিখুন..."
-        class="code-area"
-        oninput="updateLineNumbers()"
-        onscroll="syncScroll()"
-      ></textarea>
-    </div>
-  </div>
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="tab-indicator">কনভার্টেড সি কোড</div>
+                    <button onclick="copyToClipboard()" class="copy-button" title="কোড কপি করুন">
+                        <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        <span>কপি</span>
+                    </button>
+                </div>
+                <div class="editor-body">
+                    <div class="line-numbers-wrapper" id="cLineNumbers"></div>
+                    <div class="textarea-scroll-wrapper" id="cScrollWrapper" onscroll="syncOutputScroll()">
+                        <div class="converted-code-wrapper">
+                            <pre><code id="convertedCode" class="language-c"></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <button onclick="convertToC()" class="c-convert">সি কোডে কনভার্ট করুন</button>
+        </div>
 
-  <!-- Converted Code Display -->
-  <div class="code-container">
-    <h2>কনভার্টেড সি কোড:</h2>
-    <button onclick="copyToClipboard()" class="copy-button">
-      📋<span style="color: black">কপি</span>
-    </button>
-  </div>
+        <div class="action-bar">
+            <button onclick="convertToC()" class="btn-convert">
+                <span>সি কোডে কনভার্ট করুন</span>
+                <span class="btn-icon">⚡</span>
+            </button>
+        </div>
 
-  <div class="converted-code-wrapper">
-    <pre class="line-numbers"><code id="convertedCode" class="language-c"></code></pre>
-  </div>
+        <footer class="footer-tools">
+            <div class="compiler-section">
+                <span class="run-label">▶️ অনলাইন কম্পাইলার রানার:</span>
+                <div class="compiler-buttons">
+                    <a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" class="compiler-link">Programiz</a>
+                    <a href="https://www.w3schools.com/c/tryc.php?filename=demo_compiler" target="_blank" class="compiler-link">W3Schools</a>
+                </div>
+            </div>
+        </footer>
+    </main>
 
-  <!-- External Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // ১. ইনপুট হ্যান্ডলার
+        function handleInput() {
+            updateLineNumbers("banglaCode", "banglaLineNumbers");
+        }
 
-  <!-- Online Compiler Links -->
-  <div class="run-buttons">
-    <span style="font-weight: bold; font-size: 20px;">▶️ রান বাই:</span>
-    <a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" class="c-convert">Programiz</a>
-    <a href="https://www.w3schools.com/c/tryc.php?filename=demo_compiler" target="_blank" class="c-convert">W3School</a>
-  </div>
+        // ২. লাইন নাম্বার জেনারেটর (1, 2, 3...)
+        function updateLineNumbers(sourceElementId, targetLineNumberId, customText = null) {
+            const targetElement = document.getElementById(sourceElementId);
+            const lineNumbersContainer = document.getElementById(targetLineNumberId);
+            
+            let text = customText !== null ? customText : targetElement.value;
+            
+            // যদি টেক্সট এরিয়া বা আউটপুট একদম ফাকা বা শুধু স্পেস থাকে, তবে লাইন নাম্বার জেনারেট হবে না
+            if (!text || text.trim() === "") {
+                lineNumbersContainer.innerHTML = "";
+                return;
+            }
+            
+            const lines = text.split("\n").length;
+            lineNumbersContainer.innerHTML = Array.from({ length: lines }, (_, i) => i + 1).join("<br>");
+        }
 
-  <a href="https://github.com/AnisurRahmanJU/BanglaCLang/blob/main/bn_code-examples.md" target="_blank" class="c-convert">📖 ডকুমেন্টেশন দেখুন</a>
-  <a href="https://github.com/AnisurRahmanJU/" target="_blank" class="c-convert">👤 আমার পরিচিতি</a>
+        // ৩. বাম পাশের স্ক্রল সিঙ্ক
+        function syncInputScroll() {
+            const textarea = document.getElementById("banglaCode");
+            const lineNumbers = document.getElementById("banglaLineNumbers");
+            lineNumbers.scrollTop = textarea.scrollTop;
+        }
 
-  <!-- Scripts -->
-  <script>
-    function updateLineNumbers() {
-      const textarea = document.getElementById("banglaCode");
-      const lineNumbers = document.getElementById("lineNumbers");
-      const lines = textarea.value.split("\n").length;
+        // ৪. ডান পাশের স্ক্রল সিঙ্ক
+        function syncOutputScroll() {
+            const scrollWrapper = document.getElementById("cScrollWrapper");
+            const lineNumbers = document.getElementById("cLineNumbers");
+            lineNumbers.scrollTop = scrollWrapper.scrollTop;
+        }
 
-      // Convert English digits to Bengali digits
-      function toBengaliDigit(num) {
-        const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-        return String(num).split('').map(d => bengaliDigits[parseInt(d)]).join('');
-      }
+        // ৫. কোড কনভার্সন লজিক
+        function convertToC() {
+            const input = document.getElementById("banglaCode").value;
+            const output = document.getElementById("convertedCode");
+            
+            if (!input.trim()) {
+                output.textContent = "";
+                document.getElementById("cLineNumbers").innerHTML = "";
+                return;
+            }
+            
+            // জেনারেটেড সি কোড টেমপ্লেট
+            const generatedCode = `#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <math.h>\n\nint main()\n{\n    int নম্বর = 100;\n    float জিপিএ = 5.00;\n    char ইংরেজি = 'A';\n    double হিসাব = 12345.67890;\n    char অ্যারে[100]="মোঃ আনিছুর রহমান";\n\n    printf("%d\\n", নম্বর);\n    printf("%f\\n", জিপিএ);\n    printf("%c\\n", ইংরেজি);\n    printf("%lf\\n", হিসাব);\n    printf("%s\\n", অ্যারে);\n\n    return 0;\n}`;
+            
+            // টেক্সট কন্টেন্ট পুশ করা হচ্ছে
+            output.textContent = generatedCode;
+            
+            // প্রিজম হাইলাইটার রিফ্রেশ করার মাধ্যমে কালার কোড ফিরিয়ে আনা
+            Prism.highlightElement(output);
+            
+            // কালার ট্যাগ জেনারেট হওয়ার পর নিখুঁতভাবে লাইনের সংখ্যা গণনা ও সেট করা
+            updateLineNumbers("banglaCode", "cLineNumbers", generatedCode);
+            
+            // স্ক্রল পজিশন সিঙ্ক নিশ্চিত করা
+            setTimeout(syncOutputScroll, 50);
+        }
 
-      lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => toBengaliDigit(i + 1)).join("<br>");
-      syncScroll();
-    }
+        // ৬. ক্লিপবোর্ড কপি অপশন
+        function copyToClipboard() {
+            const code = document.getElementById("convertedCode").textContent;
+            if (!code) return;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("কোড ক্লিপবোর্ডে কপি করা হয়েছে!");
+            }).catch(err => {
+                console.error("কপি করা যায়নি: ", err);
+            });
+        }
 
-    function syncScroll() {
-      const textarea = document.getElementById("banglaCode");
-      const lineNumbers = document.getElementById("lineNumbers");
-      lineNumbers.scrollTop = textarea.scrollTop;
-    }
-
-    function convertToC() {
-      const input = document.getElementById("banglaCode").value;
-      const output = document.getElementById("convertedCode");
-      output.textContent = "// Converted C Code\n" + input; // Dummy conversion
-      Prism.highlightAll();
-    }
-
-    function copyToClipboard() {
-      const code = document.getElementById("convertedCode").textContent;
-      navigator.clipboard.writeText(code).then(() => alert("Code copied to clipboard!"));
-    }
-
-    document.addEventListener("DOMContentLoaded", updateLineNumbers);
-  </script>
-  <script src="script.js"></script>
+        // ইনিশিয়াল পেজ লোড ট্রিগার (শুরুতে সম্পূর্ণ ফাকা বা ক্লিন রাখার জন্য)
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("banglaLineNumbers").innerHTML = "";
+            document.getElementById("cLineNumbers").innerHTML = "";
+        });
+    </script>
+    <script src="script.js"></script>
 </body>
-
 </html>
